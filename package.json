@@ -1,0 +1,23 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "cli to get difference between two objects",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "gendiff": "gendiff.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "hexlet",
+    "gendiff"
+  ],
+  "author": "daevv",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0"
+  }
+}
