@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "cli to get difference between two objects",
-  "main": "index.js",
+  "main": "main.js",
   "type": "module",
   "bin": {
     "gendiff": "gendiff.js"
@@ -18,6 +18,12 @@
   "author": "daevv",
   "license": "ISC",
   "dependencies": {
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
   }
 }
