@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/daevv/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/daevv/frontend-project-46/actions)
 
-[![My workflow](https://github.com/daevv/frontend-project-46/workflows/CI-check/badge.svg)]
+[![My workflow](https://github.com/daevv/frontend-project-46/workflows/CI-check/badge.svg)](https://github.com/daevv/frontend-project-46/actions)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/8eeadafeb84abdb58eba/maintainability)](https://codeclimate.com/github/daevv/frontend-project-46/maintainability)
 
