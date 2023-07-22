@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 const getComparison = (data1, data2) => {
   const res = [];
