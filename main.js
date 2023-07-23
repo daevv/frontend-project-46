@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import getComparison from './src/json-comparator.js';
-import getDataFromJson from './src/parse.js';
+import getComparison from './src/comparator.js';
+import getParseFromFile from './src/parsers.js';
+
+const compareFiles = (filepath1, filepath2) => {
+  const comparison = getComparison(getParseFromFile(filepath1), getParseFromFile(filepath2));
+  console.log(comparison);
+};
 
 program
   .name('gendiff')
@@ -11,9 +16,6 @@ program
   .argument('<filepath2>')
   .version('0.1.0')
   .option('-f, -format <type>', 'output format')
-  .action((filepath1, filepath2) => {
-    const comparison = getComparison(getDataFromJson(filepath1), getDataFromJson(filepath2));
-    console.log(comparison);
-  });
+  .action((filepath1, filepath2) => compareFiles(filepath1, filepath2));
 
 program.parse();
