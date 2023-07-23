@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-test('extractLinks',  () => {
+test('extractLinks', () => {
   const file1 = fs.readFileSync(getFixturePath('file1.json'), 'utf-8');
   const file2 = fs.readFileSync(getFixturePath('file2.json'), 'utf-8');
   const data1 = JSON.parse(file1);
