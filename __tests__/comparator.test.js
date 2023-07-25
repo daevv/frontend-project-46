@@ -5,6 +5,7 @@ import path from 'node:path';
 import yaml from 'js-yaml';
 
 import getComparison from '../src/comparator.js';
+import styler from '../src/stylish.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,7 +18,7 @@ test('json comparison', () => {
   const file2 = fs.readFileSync(getFixturePath('file2.json'), 'utf-8');
   const data1 = JSON.parse(file1);
   const data2 = JSON.parse(file2);
-  expect(getComparison(data1, data2)).toEqual(expectedResult);
+  expect(getComparison(data1, data2, styler)).toEqual(expectedResult);
 });
 
 test('yaml comparison', () => {
@@ -25,5 +26,5 @@ test('yaml comparison', () => {
   const file2 = fs.readFileSync(getFixturePath('file2.yml'), 'utf-8');
   const data1 = yaml.load(file1);
   const data2 = yaml.load(file2);
-  expect(getComparison(data1, data2)).toEqual(expectedResult);
+  expect(getComparison(data1, data2, styler)).toEqual(expectedResult);
 });
