@@ -1,11 +1,21 @@
 #!/usr/bin/env node
 
-import { program } from 'commander';
+import { Command } from 'commander';
 import getComparison from './src/comparator.js';
 import getParseFromFile from './src/parsers.js';
+import stylerFunc from './src/stylish.js';
 
+const formatType = {
+  styler: stylerFunc,
+};
+
+const program = new Command();
 const compareFiles = (filepath1, filepath2) => {
-  const comparison = getComparison(getParseFromFile(filepath1), getParseFromFile(filepath2));
+  const comparison = getComparison(
+    getParseFromFile(filepath1),
+    getParseFromFile(filepath2),
+    formatType[program.opts().format],
+  );
   console.log(comparison);
 };
 
@@ -15,7 +25,7 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .version('0.1.0')
-  .option('-f, -format <type>', 'output format')
+  .option('-f, --format <type>', 'output format', 'styler')
   .action((filepath1, filepath2) => compareFiles(filepath1, filepath2));
 
 program.parse();
