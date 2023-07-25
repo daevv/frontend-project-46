@@ -1,5 +1,11 @@
 import diffResults from './const.js';
 
+const diffMarkers = {
+  [diffResults.add]: '+',
+  [diffResults.remove]: '-',
+  [diffResults.unchanged]: ' ',
+};
+
 const stylerFunc = (comparison) => {
   const spacesPerTab = 4;
   const leftShift = 2;
@@ -9,18 +15,11 @@ const stylerFunc = (comparison) => {
       return tree;
     }
     const res = tree.flatMap((leaf) => {
-      switch (leaf.diffResult) {
-        case diffResults.unchanged:
-          return [`${currentIndent}  ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`];
-        case diffResults.add:
-          return [`${currentIndent}+ ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`];
-        case diffResults.remove:
-          return [`${currentIndent}- ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`];
-        case diffResults.update:
-          return [`${currentIndent}- ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`, `${currentIndent}+ ${leaf.key}: ${iter(leaf.newValue, tabsCounter + 1)}`];
-        default:
-          throw new Error('wrong diff type');
+      if (leaf.diffResult === diffResults.update) {
+        return [`${currentIndent}- ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`,
+          `${currentIndent}+ ${leaf.key}: ${iter(leaf.newValue, tabsCounter + 1)}`];
       }
+      return [`${currentIndent}${diffMarkers[leaf.diffResult]} ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`];
     });
     return `{\n${res.join('\n')}\n${currentIndent.slice(2)}}`;
   };
