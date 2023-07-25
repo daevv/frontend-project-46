@@ -12,3 +12,6 @@ JSON example
 
 YAML example
 [![asciicast](https://asciinema.org/a/BUvm2OyiD3k5UtbKv6OM0VtQZ.svg)](https://asciinema.org/a/BUvm2OyiD3k5UtbKv6OM0VtQZ)
+
+deep compare example
+[![asciicast](https://asciinema.org/a/qHPVxntAgT97GvZ2oovTAfHCW.svg)](https://asciinema.org/a/qHPVxntAgT97GvZ2oovTAfHCW)
