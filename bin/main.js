@@ -21,7 +21,7 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .version('0.1.0')
-  .option('-f, --format <type>', 'output format', 'styler')
+  .option('-f, --format <type>', 'output format', 'stylish')
   .action((filepath1, filepath2, options) => genDiff(filepath1, filepath2, options.format));
 
 program.parse();
