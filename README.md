@@ -6,16 +6,16 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8eeadafeb84abdb58eba/test_coverage)](https://codeclimate.com/github/daevv/frontend-project-46/test_coverage)
 
 JSON example
-[![asciicast](https://asciinema.org/a/aWaJ0VfpegyTnlUeCeZAXYqiQ.svg)](https://asciinema.org/a/aWaJ0VfpegyTnlUeCeZAXYqiQ)
+[![asciicast](https://asciinema.org/a/c5btJyyrF5hEQH0SKOQSOpkSR.svg)](https://asciinema.org/a/c5btJyyrF5hEQH0SKOQSOpkSR)
 
 YAML example
-[![asciicast](https://asciinema.org/a/BUvm2OyiD3k5UtbKv6OM0VtQZ.svg)](https://asciinema.org/a/BUvm2OyiD3k5UtbKv6OM0VtQZ)
+[![asciicast](https://asciinema.org/a/8VSPvNe4s3TTaCwkdj9thClOR.svg)](https://asciinema.org/a/8VSPvNe4s3TTaCwkdj9thClOR)
 
 deep compare example
-[![asciicast](https://asciinema.org/a/qHPVxntAgT97GvZ2oovTAfHCW.svg)](https://asciinema.org/a/qHPVxntAgT97GvZ2oovTAfHCW)
+[![asciicast](https://asciinema.org/a/kSNc9jCsXH1wmjDoxlf2VQq11.svg)](https://asciinema.org/a/kSNc9jCsXH1wmjDoxlf2VQq11)
 
 plain format example
-[![asciicast](https://asciinema.org/a/LBfd8aEtjHPtcBu0YU0jGnQbd.svg)](https://asciinema.org/a/LBfd8aEtjHPtcBu0YU0jGnQbd)
+[![asciicast](https://asciinema.org/a/oSxg8WEZ3R0fvfGasLjZmYf7R.svg)](https://asciinema.org/a/oSxg8WEZ3R0fvfGasLjZmYf7R)
 
 json format example
-[![asciicast](https://asciinema.org/a/YHX6cIpZXt30b3lbiQMIuMzw4.svg)](https://asciinema.org/a/YHX6cIpZXt30b3lbiQMIuMzw4)
+[![asciicast](https://asciinema.org/a/7VhhtWt4RBsg46U58GH96W8Ia.svg)](https://asciinema.org/a/7VhhtWt4RBsg46U58GH96W8Ia)
