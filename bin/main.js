@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import getComparison from './src/comparator.js';
-import getParseFromFile from './src/parsers.js';
-import getFormatFunc from './src/formatters/index.js';
+import getComparison from '../src/comparator.js';
+import getParseFromFile from '../src/parsers.js';
+import getFormatFunc from '../src/formatters/index.js';
 
 const program = new Command();
 const genDiff = (filepath1, filepath2, formatName) => {
