@@ -1,4 +1,4 @@
-import diffResults from './const.js';
+import diffResults from '../const.js';
 
 const diffMarkers = {
   [diffResults.add]: '+',
@@ -6,7 +6,7 @@ const diffMarkers = {
   [diffResults.unchanged]: ' ',
 };
 
-const stylerFunc = (comparison) => {
+const styler = (comparison) => {
   const spacesPerTab = 4;
   const leftShift = 2;
   const iter = (tree, tabsCounter) => {
@@ -26,4 +26,4 @@ const stylerFunc = (comparison) => {
   return iter(comparison, 1);
 };
 
-export default stylerFunc;
+export default styler;
