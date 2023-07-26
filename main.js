@@ -3,20 +3,16 @@
 import { Command } from 'commander';
 import getComparison from './src/comparator.js';
 import getParseFromFile from './src/parsers.js';
-import stylerFunc from './src/stylish.js';
-
-const formatType = {
-  styler: stylerFunc,
-};
+import getFormatFunc from './src/formatters/index.js';
 
 const program = new Command();
-const compareFiles = (filepath1, filepath2) => {
-  const comparison = getComparison(
+const genDiff = (filepath1, filepath2, formatName) => {
+  const diff = getComparison(
     getParseFromFile(filepath1),
     getParseFromFile(filepath2),
-    formatType[program.opts().format],
+    getFormatFunc(formatName),
   );
-  console.log(comparison);
+  console.log(diff);
 };
 
 program
@@ -26,6 +22,6 @@ program
   .argument('<filepath2>')
   .version('0.1.0')
   .option('-f, --format <type>', 'output format', 'styler')
-  .action((filepath1, filepath2) => compareFiles(filepath1, filepath2));
+  .action((filepath1, filepath2, options) => genDiff(filepath1, filepath2, options.format));
 
 program.parse();
