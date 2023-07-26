@@ -1,5 +1,6 @@
 import styler from './stylish.js';
 import plain from './plain.js';
+import json from './json.js';
 
 const getFormatFunc = (format) => {
   switch (format) {
@@ -8,7 +9,7 @@ const getFormatFunc = (format) => {
     case 'plain':
       return plain;
     case 'json':
-      return 1;
+      return json;
     default:
       throw new Error('Wrong format type');
   }
