@@ -15,3 +15,6 @@ YAML example
 
 deep compare example
 [![asciicast](https://asciinema.org/a/qHPVxntAgT97GvZ2oovTAfHCW.svg)](https://asciinema.org/a/qHPVxntAgT97GvZ2oovTAfHCW)
+
+plain format example
+[![asciicast](https://asciinema.org/a/LBfd8aEtjHPtcBu0YU0jGnQbd.svg)](https://asciinema.org/a/LBfd8aEtjHPtcBu0YU0jGnQbd)
