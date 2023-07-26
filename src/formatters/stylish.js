@@ -19,7 +19,7 @@ const styler = (comparison) => {
         return [`${currentIndent}- ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`,
           `${currentIndent}+ ${leaf.key}: ${iter(leaf.newValue, tabsCounter + 1)}`];
       }
-      return [`${currentIndent}${diffMarkers[leaf.diffResult]} ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`];
+      return `${currentIndent}${diffMarkers[leaf.diffResult]} ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`;
     });
     return `{\n${res.join('\n')}\n${currentIndent.slice(2)}}`;
   };
