@@ -1,65 +1,65 @@
 import _ from 'lodash';
-import diffResults from './const.js';
+import TYPE_OF_DIFF from './const.js';
 
 const getChild = (data) => {
   if (_.isObject(data)) {
     const fields = Object.keys(data);
     return fields.map((field) => ({
-      key: field,
-      value: getChild(data[field]),
-      diffResult: diffResults.unchanged,
+      propertyName: field,
+      propertyValue: getChild(data[field]),
+      diffResult: TYPE_OF_DIFF.unchanged,
     }));
   }
   return data;
 };
 
-const getComparison = (obj1, obj2, styler) => {
+const getComparison = (obj1, obj2, formatter) => {
   const iter = (data1, data2) => {
     const allFields = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
 
     const res = allFields.map((currentField) => {
-      const data1Value = data1[currentField];
-      const data2Value = data2[currentField];
+      const data1propertyValue = data1[currentField];
+      const data2propertyValue = data2[currentField];
 
-      if (_.isObject(data1Value) && _.isObject(data2Value)) {
+      if (_.isObject(data1propertyValue) && _.isObject(data2propertyValue)) {
         return {
-          key: currentField,
-          value: iter(data1Value, data2Value),
-          diffResult: diffResults.unchanged,
+          propertyName: currentField,
+          propertyValue: iter(data1propertyValue, data2propertyValue),
+          diffResult: TYPE_OF_DIFF.unchanged,
         };
       }
       if (!_.has(data1, currentField)) {
         return {
-          key: currentField,
-          value: getChild(data2Value),
-          diffResult: diffResults.add,
+          propertyName: currentField,
+          propertyValue: getChild(data2propertyValue),
+          diffResult: TYPE_OF_DIFF.added,
         };
       }
       if (!_.has(data2, currentField)) {
         return {
-          key: currentField,
-          value: getChild(data1Value),
-          diffResult: diffResults.remove,
+          propertyName: currentField,
+          propertyValue: getChild(data1propertyValue),
+          diffResult: TYPE_OF_DIFF.removed,
         };
       }
-      if (data1Value !== data2Value) {
+      if (data1propertyValue !== data2propertyValue) {
         return {
-          key: currentField,
-          value: getChild(data1Value),
-          newValue: getChild(data2Value),
-          diffResult: diffResults.update,
+          propertyName: currentField,
+          propertyValue: getChild(data1propertyValue),
+          newPropertyValue: getChild(data2propertyValue),
+          diffResult: TYPE_OF_DIFF.updated,
         };
       }
       return {
-        key: currentField,
-        value: getChild(data1Value),
-        diffResult: diffResults.unchanged,
+        propertyName: currentField,
+        propertyValue: getChild(data1propertyValue),
+        diffResult: TYPE_OF_DIFF.unchanged,
       };
     });
     return res;
   };
 
-  return styler(iter(obj1, obj2));
+  return formatter(iter(obj1, obj2));
 };
 
 export default getComparison;
