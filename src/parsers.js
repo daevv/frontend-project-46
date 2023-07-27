@@ -2,15 +2,14 @@ import * as fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 
-const getPathToFile = (filename) => {
+const getPathToFile = (filePath) => {
   const cwd = process.cwd();
-  const partsOfPath = filename.split('/');
-  return path.resolve(cwd, ...partsOfPath);
+  return path.resolve(cwd, filePath);
 };
 
-const getParseFromFile = (filename) => {
-  const data = fs.readFileSync(getPathToFile(filename), 'utf8');
-  const extension = filename.split('.').at(-1);
+const getParseFromFile = (filePath) => {
+  const data = fs.readFileSync(getPathToFile(filePath), 'utf8');
+  const extension = filePath.split('.').at(-1);
   switch (extension) {
     case 'json':
       return JSON.parse(data);
