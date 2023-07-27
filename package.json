@@ -2,10 +2,10 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "cli to get difference between two objects",
-  "main": "bin/main.js",
+  "main": "src/main.js",
   "type": "module",
   "bin": {
-    "gendiff": "bin/main.js"
+    "gendiff": "bin/gendiff.js"
   },
   "scripts": {
     "test": "npx jest"
