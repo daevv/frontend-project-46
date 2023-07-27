@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "cli to get difference between two objects",
-  "main": "src/main.js",
+  "main": "bin/main.js",
   "type": "module",
   "bin": {
     "gendiff": "bin/main.js"
