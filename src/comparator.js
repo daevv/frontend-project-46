@@ -1,13 +1,12 @@
 import _ from 'lodash';
-import TYPE_OF_DIFF from './const.js';
 
 const getChild = (data) => {
   if (_.isObject(data)) {
     const fields = Object.keys(data);
-    return fields.map((field) => ({
-      propertyName: field,
-      propertyValue: getChild(data[field]),
-      diffResult: TYPE_OF_DIFF.unchanged,
+    return fields.map((key) => ({
+      key,
+      value: getChild(data[key]),
+      type: 'unchanged',
     }));
   }
   return data;
@@ -17,43 +16,40 @@ const getComparison = (obj1, obj2, formatter) => {
   const iter = (data1, data2) => {
     const allFields = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
 
-    const res = allFields.map((currentField) => {
-      const data1propertyValue = data1[currentField];
-      const data2propertyValue = data2[currentField];
-
-      if (_.isObject(data1propertyValue) && _.isObject(data2propertyValue)) {
+    const res = allFields.map((key) => {
+      if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
         return {
-          propertyName: currentField,
-          propertyValue: iter(data1propertyValue, data2propertyValue),
-          diffResult: TYPE_OF_DIFF.unchanged,
+          key,
+          value: iter(data1[key], data2[key]),
+          type: 'unchanged',
         };
       }
-      if (!_.has(data1, currentField)) {
+      if (!_.has(data1, key)) {
         return {
-          propertyName: currentField,
-          propertyValue: getChild(data2propertyValue),
-          diffResult: TYPE_OF_DIFF.added,
+          key,
+          value: getChild(data2[key]),
+          type: 'added',
         };
       }
-      if (!_.has(data2, currentField)) {
+      if (!_.has(data2, key)) {
         return {
-          propertyName: currentField,
-          propertyValue: getChild(data1propertyValue),
-          diffResult: TYPE_OF_DIFF.removed,
+          key,
+          value: getChild(data1[key]),
+          type: 'removed',
         };
       }
-      if (data1propertyValue !== data2propertyValue) {
+      if (!_.isEqual(data1[key], data2[key])) {
         return {
-          propertyName: currentField,
-          propertyValue: getChild(data1propertyValue),
-          newPropertyValue: getChild(data2propertyValue),
-          diffResult: TYPE_OF_DIFF.updated,
+          key,
+          value: getChild(data1[key]),
+          newValue: getChild(data2[key]),
+          type: 'updated',
         };
       }
       return {
-        propertyName: currentField,
-        propertyValue: getChild(data1propertyValue),
-        diffResult: TYPE_OF_DIFF.unchanged,
+        key,
+        value: getChild(data1[key]),
+        type: 'unchanged',
       };
     });
     return res;

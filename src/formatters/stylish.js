@@ -1,9 +1,7 @@
-import TYPE_OF_DIFF from '../const.js';
-
 const diffMarkers = {
-  [TYPE_OF_DIFF.added]: '+',
-  [TYPE_OF_DIFF.removed]: '-',
-  [TYPE_OF_DIFF.unchanged]: ' ',
+  added: '+',
+  removed: '-',
+  unchanged: ' ',
 };
 
 const styler = (comparison) => {
@@ -15,11 +13,11 @@ const styler = (comparison) => {
       return tree;
     }
     const res = tree.flatMap((leaf) => {
-      if (leaf.diffResult === TYPE_OF_DIFF.updated) {
-        return [`${currentIndent}- ${leaf.propertyName}: ${iter(leaf.propertyValue, tabsCounter + 1)}`,
-          `${currentIndent}+ ${leaf.propertyName}: ${iter(leaf.newPropertyValue, tabsCounter + 1)}`];
+      if (leaf.type === 'updated') {
+        return [`${currentIndent}- ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`,
+          `${currentIndent}+ ${leaf.key}: ${iter(leaf.newValue, tabsCounter + 1)}`];
       }
-      return `${currentIndent}${diffMarkers[leaf.diffResult]} ${leaf.propertyName}: ${iter(leaf.propertyValue, tabsCounter + 1)}`;
+      return `${currentIndent}${diffMarkers[leaf.type]} ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`;
     });
     return `{\n${res.join('\n')}\n${currentIndent.slice(2)}}`;
   };
