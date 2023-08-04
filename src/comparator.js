@@ -20,8 +20,8 @@ const getComparison = (obj1, obj2, formatter) => {
       if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
         return {
           key,
-          value: iter(data1[key], data2[key]),
-          type: 'unchanged',
+          children: iter(data1[key], data2[key]),
+          type: 'nested',
         };
       }
       if (!_.has(data1, key)) {

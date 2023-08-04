@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 const getValue = (value) => {
   if (Array.isArray(value)) {
     return '[complex value]';
@@ -21,7 +19,9 @@ const plain = (comparison) => {
       case 'updated':
         return `Property '${path.join('.')}' was updated. From ${getValue(node.value)} to ${getValue(node.newValue)}`;
       case 'unchanged':
-        return (_.isObject(node.value)) ? iter(node.value, path) : [];
+        return [];
+      case 'nested':
+        return iter(node.children, path);
       default:
         throw new Error('unexpected diff type');
     }

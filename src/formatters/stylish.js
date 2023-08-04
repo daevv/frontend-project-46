@@ -2,6 +2,7 @@ const diffMarkers = {
   added: '+',
   removed: '-',
   unchanged: ' ',
+  nested: ' ',
 };
 
 const styler = (comparison) => {
@@ -17,7 +18,8 @@ const styler = (comparison) => {
         return [`${currentIndent}- ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`,
           `${currentIndent}+ ${leaf.key}: ${iter(leaf.newValue, tabsCounter + 1)}`];
       }
-      return `${currentIndent}${diffMarkers[leaf.type]} ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`;
+      const nextIter = leaf.value ?? leaf.children;
+      return `${currentIndent}${diffMarkers[leaf.type]} ${leaf.key}: ${iter(nextIter, tabsCounter + 1)}`;
     });
     return `{\n${res.join('\n')}\n${currentIndent.slice(2)}}`;
   };
