@@ -1,5 +1,7 @@
+import _ from 'lodash';
+
 const getValue = (value) => {
-  if (Array.isArray(value)) {
+  if (_.isPlainObject(value)) {
     return '[complex value]';
   }
   return ((typeof value === 'string') ? `'${value}'` : value);

@@ -1,11 +1,11 @@
 import yaml from 'js-yaml';
 
-const functionForParsing = {
+const parsers = {
   json: JSON.parse,
   yml: yaml.load,
   yaml: yaml.load,
 };
 
-const getParseFromFile = (data, type) => functionForParsing[type](data);
+const parseData = (data, type) => parsers[type](data);
 
-export default getParseFromFile;
+export default parseData;

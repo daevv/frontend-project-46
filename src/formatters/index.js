@@ -1,12 +1,12 @@
 import styler from './stylish.js';
 import plain from './plain.js';
 
-const funcToFomat = {
+const formatters = {
   stylish: styler,
   plain,
   json: JSON.stringify,
 };
 
-const getFormatFunc = (format) => funcToFomat[format];
+const formatDiff = (formatName, diffData) => formatters[formatName](diffData);
 
-export default getFormatFunc;
+export default formatDiff;

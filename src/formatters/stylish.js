@@ -1,29 +1,39 @@
-const diffMarkers = {
-  added: '+',
-  removed: '-',
-  unchanged: ' ',
-  nested: ' ',
-};
+import _ from 'lodash';
 
 const styler = (comparison) => {
   const spacesPerTab = 4;
   const leftShift = 2;
-  const iter = (tree, tabsCounter) => {
+
+  const iter = (node, tabsCounter) => {
     const currentIndent = ' '.repeat(tabsCounter * spacesPerTab - leftShift);
-    if (!Array.isArray(tree)) {
-      return tree;
+
+    if (!_.isPlainObject(node)) {
+      return node;
     }
-    const res = tree.flatMap((leaf) => {
-      if (leaf.type === 'updated') {
-        return [`${currentIndent}- ${leaf.key}: ${iter(leaf.value, tabsCounter + 1)}`,
-          `${currentIndent}+ ${leaf.key}: ${iter(leaf.newValue, tabsCounter + 1)}`];
-      }
-      const nextIter = leaf.value ?? leaf.children;
-      return `${currentIndent}${diffMarkers[leaf.type]} ${leaf.key}: ${iter(nextIter, tabsCounter + 1)}`;
-    });
-    return `{\n${res.join('\n')}\n${currentIndent.slice(2)}}`;
+
+    if (!_.has(node, 'type')) {
+      const res = Object.keys(node)
+        .flatMap((key) => `${currentIndent}  ${key}: ${iter(node[key], tabsCounter + 1)}`);
+      return `{\n${res.join('\n')}\n${currentIndent.slice(2)}}`;
+    }
+
+    switch (node.type) {
+      case 'added':
+        return `${currentIndent}+ ${node.key}: ${iter(node.value, tabsCounter + 1)}\n`;
+      case 'removed':
+        return `${currentIndent}- ${node.key}: ${iter(node.value, tabsCounter + 1)}\n`;
+      case 'unchanged':
+        return `${currentIndent}  ${node.key}: ${iter(node.value, tabsCounter + 1)}\n`;
+      case 'updated':
+        return `${currentIndent}- ${node.key}: ${iter(node.value, tabsCounter + 1)}\n${currentIndent}+ ${node.key}: ${iter(node.newValue, tabsCounter + 1)}\n`;
+      case 'nested':
+        return `${currentIndent}  ${node.key}: {\n${node.children.flatMap((child) => iter(child, tabsCounter + 1)).join('')}${currentIndent}  }\n`;
+      default:
+        throw new Error('incorrect type');
+    }
   };
-  return iter(comparison, 1);
+  const compare = comparison.flatMap((diffCell) => iter(diffCell, 1));
+  return `{\n${compare.join('')}}`;
 };
 
 export default styler;

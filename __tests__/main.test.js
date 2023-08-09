@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import path from 'node:path';
-import genDiff from '../src/index.js';
+import genDiff from '../index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
